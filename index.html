@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html ng-app="test">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bass.css"/>
+		<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bass.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		
+	</style>
+	<body ng-controller="mainCtrl">
+		<div id="contain">
+			<div class="center">
+				
+				
+				<div class="left">
+					<div class="title">
+						<div class="lf">
+							<div class="icloud"></div>
+							<div class="tixing">提醒事项</div>
+							<div class="xia"></div>
+						</div>
+						
+						<div class="rg" ng-click="addlist();save2local()">
+							<div class="img"></div>
+						</div>
+					</div>
+					
+					<div class="lis" my-u="">
+						
+						<!--<div class="link plan">
+							<div class="watch">
+								
+							</div>
+							<div class="planed">
+								已计划
+							</div>
+						</div>-->
+						
+						
+						<div class="link option" ng-repeat="v in lists track by $index" ng-click="cu=$index" ng-class="{active:cu===$index}">
+							<div class="color {{v.theme}}"></div>
+							<div class="rg-xuan">
+								<div class="xuan">{{v.name}}
+									<input ng-keyup="save2local()" type="text" name="" id="tx" ng-model="v.name" />
+								</div>
+								
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						
+						<!--<div class="link option link2">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">选项</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						<div class="link option link3">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						<div class="link option link4">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表 2</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						<div class="link option link5">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表 3</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						<div class="link option link6">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表 4</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						<div class="link option link7">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表 5</div>
+								<div class="wifi"></div>
+							</div>
+						</div>
+						
+						<div class="link option link8">
+							<div class="color"></div>
+							<div class="rg-xuan">
+								<div class="xuan">新列表 6</div>
+								<div class="wifi"></div>
+							</div>
+						</div>-->
+						
+					</div>
+				</div>
+				
+				
+				
+				<div class="right">
+					<div class="search">
+						<div class="search-lf">
+							
+							<div class="icon">
+								<div class="img-icon">
+									
+								</div>
+							</div>
+							
+							<div class="word">
+								<div class="sousuo">
+									搜索所有提醒
+								</div>
+								
+								<input id='text' type="text" name="" id="" value="" />
+							</div>
+							
+						</div>
+						
+						<div class="search-rg">
+							
+							<div class="icon-rg">
+								<div class="icon-rg-img">
+									
+								</div>
+							</div>
+							
+							<div class="xian">
+								
+							</div>
+							
+							<div class="name">
+								
+								<div class="lf-name">
+									曹小燕
+								</div>
+								
+								<div class="xia-img">
+									
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+						
+						
+					<!--列表页-->
+						
+					<div class="con-lis active {{lists[cu].theme}}">
+						
+						<div class="rg-contain">
+							<div class="tit">
+								<div class="lis-tit">
+									{{lists[cu].name}}
+									<div class="choice"  button="">
+										
+										选项
+										
+										<!--hidden页面-->
+										
+										
+										<div class="hidden">
+											<div id="sanjiao">
+												
+											</div>
+											<div class="shuru">
+												<input class="input-text" type="text" name="" id="" ng-model="lists[cu].name" ng-keyup="save2local()"/>
+											</div>
+											<div class="yanse">
+												列表颜色
+											</div>
+											
+											<div class="color-lis">
+												<div ng-click="lists[cu].theme=v;save2local()" ng-repeat="v in colors" class="pan color1" ng-class="{active:lists[cu].theme==v}">
+													<p class="{{v}}"></p>
+												</div>
+												<!--<div class="color2">
+													<p></p>
+												</div>
+												<div class="color3">
+													<p></p>
+												</div>
+												<div class="color4">
+													<p></p>
+												</div>
+												<div class="color5">
+													<p></p>
+												</div>
+												<div class="color6">
+													<p></p>
+												</div>
+												<div class="color7">
+													<p></p>
+												</div>-->
+											</div>
+											
+											
+											<div class="anniu">
+												<div class="button">
+													<div ng-click="del();save2local()" class="del">删除</div>
+													<div class="quxiao" ng-click="cancel()">取消</div>
+													<div class="xxian"></div>
+													<div ng-click="cancel()" class="finish">完成</div>
+												</div>
+											</div>
+											
+											
+										</div>
+										
+										<!--hidden结束-->
+										
+									</div>
+									
+									
+									
+								</div>
+								
+								
+								
+							</div>
+							
+							
+							<div class="comed" >
+								<div class="com-tit"  ng-click="xiala2()" >
+									已完成     {{count()}}
+									<span class="spans"></span>
+									<b ng-click="clear();save2local()">X</b>
+								</div>
+								<div ng-if="v.state===1" class="com-lis" ng-repeat="v in lists[cu].todos" ng-mouseover="addclass()">
+									<span ng-click="v.state=0;save2local()" class="{{lists[cu].theme}}"></span>
+									<p>{{v.name}}</p>
+									
+									<div class="zhegai">
+									
+									</div>
+									
+								</div>
+								
+								
+							</div>
+							
+							
+							<div class="wei">
+								<div class="com-tit" ng-click="xiala()">
+									未完成  {{count2()}}
+									<span class="spans"></span>
+								</div>
+								<div ng-if="v.state===0" class="com-lis" ng-repeat="v in lists[cu].todos" ng-mouseover="addclass()">
+									<span ng-click="v.state=1;save2local()" class="{{lists[cu].theme}}"></span>
+									<p>{{v.name}}</p>
+									
+									<div class="zhegai"></div>
+									
+								</div>
+							</div>
+							
+							
+							<div class="tody-box">
+								<div class="tody">
+									今天
+								</div>
+							</div>
+							
+							<div class="project">
+								<div class="pro-ct">
+									<!--新项目...-->
+									<span ng-click="lists[cu].todos.push({name:value,state:0});value='';save2local()">+</span>
+									<input ng-model="value" type="text" name="bianji" id="bianji" value=""/>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					<!--选项-->
+					<!--<div class="con-lis">
+						
+						<div class="rg-contain">
+							<div class="tit">
+								<div class="lis-tit">
+									选项
+								</div>
+							</div>
+							
+							<div class="tody-box">
+								<div class="tody">
+									今天
+								</div>
+							</div>
+							
+							<div class="project">
+								<div class="pro-ct">
+									新项目...
+								</div>
+							</div>
+						</div>
+						
+					</div>-->
+					
+					
+					<!--列表一-->
+					<!--<div class="con-lis same" >
+						
+						<div class="rg-contain">
+							<div class="tit">
+								<div class="lis-tit">
+									新列表
+								</div>
+							</div>
+							
+							<div class="tody-box">
+								<div class="tody">
+									已完成：0项
+								</div>
+							</div>
+							
+							<div class="project">
+								<div class="pro-ct">
+									新项目...
+								</div>
+							</div>
+						</div>
+						
+					</div>-->
+					
+					
+					<!--列表二-->
+					<!--<div class="con-lis">
+						
+						<div class="rg-contain">
+							<div class="tit">
+								<div class="lis-tit">
+									新列表 2
+								</div>
+							</div>
+							
+							<div class="tody-box">
+								<div class="tody">
+									已完成：0项
+								</div>
+							</div>
+							
+							<div class="project">
+								<div class="pro-ct">
+									新项目...
+								</div>
+							</div>
+						</div>
+						
+					</div>-->
+					
+					
+				
+				
+
+
+
+
+					
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--<div class="class red"></div>
+		<div class="class yellow"></div>
+		<div class="class blue"></div>-->
+		
+	</body>
+	
+</html>
